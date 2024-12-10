@@ -1,22 +1,33 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Exclude, Expose } from "class-transformer";
+import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity('users') // Nome da tabela no banco de dados
+@Entity("users")
 export class User {
   @PrimaryGeneratedColumn()
+  @Expose()
   id: number;
 
   @Column({ nullable: false })
+  @Expose()
   name: string;
 
   @Column({ unique: true, nullable: false })
+  @Expose()
   email: string;
 
-  @Column()
+  @Column({ nullable: true })
+  @Expose()
   address: string;
 
-  @Column()
+  @Column({ nullable: true })
+  @Expose()
   phone: string;
 
-  @Column()
+  @Column({ nullable: true })
+  @Expose()
   avatarUrl: string;
+
+  @Column()
+  @Exclude()
+  password: string;
 }
